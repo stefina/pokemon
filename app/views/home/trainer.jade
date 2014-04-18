@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+	h1.pokeFont Hello #{trainer.nickname}!
+	h3.pokeFont Pokémon on your team:
+		if trainer.pokemonTeam
+			table(class='pokeDexTable')
+				each pokemon in trainer.pokemonTeam
+					include pokedex
+
+	h3.pokeFont Pokémon you caught:
+		if trainer.pokemonCaptured
+			table(class='pokeDexTable')
+				each pokemon in trainer.pokemonCaptured
+					include pokedex

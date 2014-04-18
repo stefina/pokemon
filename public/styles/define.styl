@@ -1,0 +1,43 @@
+$box-shadow-color = #eee
+
+$font-color = black
+
+@font-face 
+	font-family pokemon_font
+	src	url('/webfontkit/pokemon_gb-webfont.ttf')
+	font-weight normal
+	font-style normal
+
+// functions
+box-shadow(args...)
+	-webkit-box-shadow args
+	-moz-box-shadow args
+	box-shadow args
+
+groove-border(borderSize, borderColor)
+	border borderSize groove borderColor
+	-webkit-border-radius borderSize
+	-moz-border-radius borderSize
+	border-radius borderSize
+
+blurfilter(args...)	
+	filter blur(args)
+	// Browser Specific
+	-webkit-filter blur(args)
+	-moz-filter blur(args)
+	-o-filter blur(args)
+	-ms-filter blur(args)
+
+// some defaults
+.block
+	display block
+
+.floatLeft
+	float left
+
+.floatRight
+	float right
+
+a
+	text-decoration none
+	color default

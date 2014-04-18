@@ -1,0 +1,6 @@
+#!/bin/sh
+
+### lolcommits hook (begin) ###
+export PATH="/usr/bin/ruby:$PATH"
+lolcommits --capture --capture --delay=3 --animate=5
+###  lolcommits hook (end)  ###

@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+	div(class='fightMode', id='fightMode')
+		div.enemyPokemon
+			p.uppercase #{enemyPokemon.name}
+			div(class='pokemonStatus')
+				span L:#{enemyPokemon.lvl}
+
+				- var statusBarStyle = ('width:'+enemyPokemon.hp+'px;')
+				div(class='statusBarContainer')
+					div(class='statusBar', style=statusBarStyle)
+				p.epBar #{enemyPokemon.ep} EP
+			img(src=enemyPokemon.imgFront)
+
+		div.trainerPokemon
+			img(src=trainerPokemon.imgBack, class='floatLeft trainerPokemonImg')
+			p(class='uppercase floatRight') #{trainerPokemon.name}
+			div(class='pokemonStatus floatRight')
+				span L:#{trainerPokemon.lvl}
+
+				- var statusBarStyle = ('width:'+trainerPokemon.hp+'px;')
+				div(class='statusBarContainer')
+					div(class='statusBar', style=statusBarStyle)
+				p.epBar #{trainerPokemon.ep} EP
+
+		include fightMenu

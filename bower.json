@@ -1,0 +1,14 @@
+{
+  "name": "pokemon",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.0.3",
+    "leaflet": "~0.7.2",
+    "fontawesome": "~4.0.3"
+  }
+}

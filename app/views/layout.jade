@@ -1,0 +1,35 @@
+doctype 5
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		//- meta(name='viewport', content='width=320')
+		meta(name='viewport', content='width=device-width,initial-scale=1')
+		title= title
+		block css
+			link(rel='stylesheet', href='/css/app.css', media='screen, projection')
+			link(rel='stylesheet', href='/components/font-awesome/css/font-awesome.min.css', media='screen, projection')
+			link(rel='stylesheet', href='components/leaflet-0.7.2/leaflet.css')
+			link(rel='stylesheet', href='/webfontkit/stylesheet.css', type='text/css', charset='utf-8')
+			// if IE
+				link(rel='stylesheet', href='/css/screen.css', media='screen, projection')
+
+		block js
+			script(src='http://localhost:35729/livereload.js')
+			script(src='/components/jquery/jquery.js')
+			script(src='/components/leaflet-0.7.2/leaflet.js')
+			script(src='http://www.mapquestapi.com/sdk/leaflet/v1.0/mq-map.js?key=Fmjtd%7Cluur2q6r2h%2Cb5%3Do5-9a2504')
+			script(src='/js/main.js')
+			script(src='/webfontkit/specimen_files/easytabs.js')
+
+		div(class='header', id='header')
+			a(href='/home', class='link')
+				i(class='fa fa-home fa-3x menu-icon')
+			img(src='/img/header.png', height='70px')
+			a(href='/map', class='link')
+				i(class='fa fa-map-marker fa-3x menu-icon')
+
+		if warning
+			div.warn
+				| #{warning}
+
+		block content

@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+	div#home
+		if user
+			div.homeScreen
+				p 
+					a(href='/logout')
+						| Log out
+				p
+					a(href='/trainer')
+						| #{user.nickname}'s Pokédex
+				p
+					a(href='/map')
+						| Map
+		else
+			div.signInRegister
+				form(action='/login', method='post') 
+					input(name='nickname', type='text', placeholder='Nickname')
+					input(name='password', type='password', placeholder='Password')
+					input(type='submit', value='Login', class='button loginButton')
+				
+				form(action='/register', method='post') 
+					input(name='nickname', type='text', placeholder='Nickname')
+					input(name='password', type='password', placeholder='Password')
+					input(type='submit', value='Register', class='button registerButton')

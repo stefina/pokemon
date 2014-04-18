@@ -1,0 +1,17 @@
+div(id='fightMenu', class='fightMenu')
+	- var catchLink = ('/catch?id=' + enemyPokemon._id);
+	div.actions
+		span(id='fight' ,class='action') FIGHT
+		a(class='action', href=catchLink) CATCH
+		.action PkMn
+		a(class='action', href='/map') RUN
+
+	div(id='attacks', class='attacks hide')
+		ul
+			- for (var i = 0; i < trainerPokemon.attacks.length; ++i) {
+				- var attackName = trainerPokemon.attacks[i].name
+				- var attackId = trainerPokemon.attacks[i]._id
+				- var attackAction = '/attack?attackId=' + trainerPokemon.attacks[i]._id + '&enemyPokemonId=' + enemyPokemon._id + '&trainerPokemonId=' + trainerPokemon._id
+				li
+					a(id=attackId, href=attackAction) #{attackName}
+			- }
