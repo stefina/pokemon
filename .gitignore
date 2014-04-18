@@ -27,3 +27,7 @@ node_modules
 /dist/
 
 /bower_components/
+
+.gitlab
+
+.github
