@@ -92,7 +92,6 @@ exports.catchPokemon = function(req, res){
 			res.render('home/trainer', { trainer: trainer });
 		});
 	});
-	
 };
 
 exports.fight = function(req, res){
