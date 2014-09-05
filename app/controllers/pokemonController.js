@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
 
 exports.checkLocationForPokemon = function(req, res){
 	var node = req.query.location;
-	
 
 	var latitude = node.loc_latitude;
 	var longitude = node.loc_longitude;
@@ -17,30 +16,36 @@ exports.checkLocationForPokemon = function(req, res){
 	latitude_a = round(latitude);
 	latitude_b = round(latitude) + 0.1;
 
+	var doThis = 0;
+
+
 	osmRead.parse({
 		// url: 'http://overpass-api.de/api/interpreter?data=node(51.93315273540566%2C7.567176818847656%2C52.000418429293326%2C7.687854766845703)%5Bhighway%3Dtraffic_signals%5D%3Bout%3B',
 		url: 'http://overpass-api.de/api/interpreter?data=node%28' + latitude_a + '%2C' + longitude_a + '%2C' + latitude_b + '%2C' + longitude_b + '%29%5B%22natural%22%5D%3Bout%20body%3B%0A',
 		format: 'xml',
-		endDocument: function(){
-			console.log('document end');
-		},
-		bounds: function(bounds){
-			console.log('bounds: ' + JSON.stringify(bounds));
-		},
+		// endDocument: function(){
+		// 	console.log('document end');
+		// },
+		// bounds: function(bounds){
+		// 	console.log('bounds: ' + JSON.stringify(bounds));
+		// },
 		node: function(node){
-			console.log('node: ' + JSON.stringify(node));
+			// console.log('node: ' + JSON.stringify(node));
+			if(doThis < 10){
+				doThis++;
+				Pokemon.checkArea(getNatural(node), function(err, pokemon) {
+					res.json({ location: node, pokemon: pokemon });
+				});
+			}
 		},
-		way: function(way){
-			console.log('way: ' + JSON.stringify(way));
-		},
+		// way: function(way){
+		// 	console.log('way: ' + JSON.stringify(way));
+		// },
 		error: function(msg){
 			console.log('error: ' + msg);
 		}
 	});
 
-	Pokemon.checkArea(node, function(err, pokemon) {
-		res.json({ location: node, pokemon: pokemon });
-	});
 };
 
 exports.choosePokemon = function(req, res){
@@ -99,6 +104,18 @@ exports.fight = function(req, res){
 			res.render('fight/pokemonFight', { trainerPokemon: trainerPokemon, enemyPokemon: pokemon });
 		});
 	});
+}
+
+function getNatural(node){
+	var natural = node.tags.natural;
+	if (natural){
+		if(natural == 'tree'){
+			return 'grass';
+		}
+	} else {
+		console.log('No natural features found.');
+		return null;
+	}
 }
 
 function round(val){
