@@ -33,7 +33,7 @@ exports.checkLocationForPokemon = function(req, res){
 			// console.log('node: ' + JSON.stringify(node));
 			if(doThis < 10){
 				doThis++;
-				Pokemon.checkArea(getNatural(node), function(err, pokemon) {
+				Pokemon.checkArea(getTypesByNatural(node), function(err, pokemon) {
 					res.json({ location: node, pokemon: pokemon });
 				});
 			}
@@ -105,16 +105,21 @@ exports.fight = function(req, res){
 	});
 }
 
-function getNatural(node){
+function getTypesByNatural(node){
 	var natural = node.tags.natural;
+	var pokeTypes = ['normal'];
 	if (natural){
 		if(natural == 'tree'){
-			return 'grass';
+			pokeTypes.push('grass');
 		}
-	} else {
-		console.log('No natural features found.');
-		return null;
+		if (natural == 'sand'){
+			pokeTypes.push('ground');
+		}
+		if(natural == 'water' || natural == 'lake' || natural == 'coastline'){
+			pokeTypes.push('water');
+		}
 	}
+	return pokeTypes;
 }
 
 function round(val){

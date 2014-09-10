@@ -83,15 +83,17 @@ PokemonSchema.statics.getRandomPokemon = function (callback) {
 	});
 }
 
-PokemonSchema.statics.checkArea = function (natural, callback) {
+PokemonSchema.statics.checkArea = function (naturalTypes, callback) {
 
 	var rand = Math.floor(Math.random() * 151) + 1;
 
 	getPokemonByPokedexId(rand, function(err, pokemon){
 		for(var i = 0; i < pokemon.pokemonTypes.length; i++){
-			if(pokemon.pokemonTypes[i] == natural){
-				console.log('match: ' + pokemon);
-				callback(null, pokemon);
+			for(var k = 0; k < naturalTypes.length; k++){
+				if(pokemon.pokemonTypes[i] == naturalTypes[k]){
+					console.log('match: ' + pokemon);
+					callback(null, pokemon);
+				}
 			}
 		}
 		// callback(null, null);
