@@ -70,15 +70,6 @@ module.exports = function (grunt) {
 					// includes files within path and its sub-directories
 					{	
 						expand: true, 
-						cwd: 'bower_components/', 
-						src: [
-							'font-awesome/**/*'
-						], 
-						dest: 'dist/components/'
-					},
-					// includes files within path and its sub-directories
-					{	
-						expand: true, 
 						cwd: 'public/', 
 						src: [
 							'css/**', 
@@ -86,6 +77,7 @@ module.exports = function (grunt) {
 							'components/jquery-ui/ui/jquery-ui.js', 
 							'components/jquery-ui/ui/jquery.ui.autocomplete.js',
 							'components/leaflet-0.7.2/**',
+							'components/font-awesome/**',
 							'js/**', 
 							'img/**', 
 							'webfontkit/**'
