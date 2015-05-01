@@ -8,9 +8,10 @@ $(document).ready(function() {
 	mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 	wholink = '<a href="http://stamen.com">Stamen Design</a>';
 
-	var map = L.map('map', {
-		layers: MQ.mapLayer(),
-		center: [ 52.457680, 13.526831 ],
+
+	var layer = new L.StamenTileLayer('watercolor');
+	var map = new L.Map('map', {
+		center: new L.LatLng(52.457680, 13.526831),
 		zoom: zoomLevel,
 		dragging: false,
 		touchZoom: false,
@@ -19,13 +20,7 @@ $(document).ready(function() {
 		zoomControl: false,
 		keyboard: false
 	});
-
-	// use stamen-watercolor = pretty maps
-	L.tileLayer(
-		'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
-		attribution: '&copy; '+mapLink+' Contributors & '+wholink,
-		maxZoom: zoomLevel,
-	}).addTo(map);
+	map.addLayer(layer);
 
 	// set location to user-location
 	map.locate({setView: true, maxZoom: zoomLevel, watch: true});
